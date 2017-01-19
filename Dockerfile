@@ -1,14 +1,8 @@
-FROM alpine
-
-RUN apk --update --no-cache add \
-      python3 \
-      ca-certificates \
-      openssl
+FROM python:alpine
 
 COPY src /var/local/redditbot
 WORKDIR  /var/local/redditbot
 
-RUN pip3 install --upgrade pip \
-    && pip3 install -r requirements.txt
+RUN pip3 install -r requirements.txt
 
-CMD [ "/usr/bin/python3", "redditbot.py" ]
+CMD [ "python", "bot.py" ]
