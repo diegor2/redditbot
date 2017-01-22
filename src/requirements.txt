@@ -1,11 +1,13 @@
+beautifulsoup4==4.4.1
 certifi==2016.9.26
 decorator==4.0.11
 future==0.16.0
-praw==4.2.0
-prawcore==0.6.0
+praw==4.3.0
+prawcore==0.7.0
 python-telegram-bot==5.3.0
-requests==2.12.4
+requests==2.12.5
 six==1.10.0
 update-checker==0.16
 urllib3==1.19.1
 virtualenv==15.1.0
+webpreview==1.1.0

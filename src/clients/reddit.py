@@ -1,25 +1,17 @@
 import praw
 import clients
 
-from clients.abc import Publisher
 from collections import defaultdict
-
 
 USER_AGENT = 'telegram:br.net.ruggeri.telegram-link:0.1 (by /u/diegor2)'
 
-
-class RedditBot(Publisher):
+class RedditBot(object):
 
     def __init__(self, **kwargs):
-        self.reddit = praw.Reddit(user_agent = USER_AGENT, **kwargs)
-        self.subs = defaultdict(str)
+        self.reddit = praw.Reddit(user_agent=USER_AGENT, **kwargs)
 
-    def publish(self):
-        pass
+    def exists(self, subreddit):
+        return bool(list(self.reddit.subreddits.search(subreddit)))
 
-    def submit(self, chat, title, url):
-        sub = self.sub[chat] or self.ask_subreddit()
-
-    def ask_subreddit(self):
-        telegram = clients.get('telegram')
-        telegram.ask_subreddit()
+    def submit(self, subreddit, title, url):
+        print('\n'.join([subreddit, title, url]))

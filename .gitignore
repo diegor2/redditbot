@@ -2,3 +2,5 @@ bot
 .Python
 *.pyc
 __pycache__
+todo
+*.json
