@@ -3,14 +3,13 @@ import os
 import os.path
 
 from collections import defaultdict
-
-
+from persist.decorators import lazy
 
 class JsonObject(object):
 
     def __init__(self, json_file, version='0.0'):
         self.file = json_file
-        self.data = defaultdict(lambda: None)
+        self.data = {}
 
     def load(self):
         if os.path.exists(self.file):
@@ -22,24 +21,27 @@ class JsonObject(object):
         with open(self.file, 'w') as f:
             f.write(json.dumps(self.data, sort_keys=True, indent=4))
 
-    def __getitem__(self, key):
-        if not self.data:
-            self.load()
-        return self.data[str(key)]
+    @lazy
+    def merge(self, new):
+        self._merge(self.data, new)
 
+    @lazy
+    def __getitem__(self, key):
+        return self.data.get(str(key), None)
+
+    @lazy
     def __setitem__(self, key, value):
-        if not self.data:
-            self.load()
         self.data[str(key)] = value
 
+    @lazy
     def __delitem__(self, key):
-        if not self.data:
-            self.load()
-        del self.data[str(key)]
+        self.data.pop(str(key), None)
 
+    @lazy
     def __repr__(self):
         return repr(self.data)
 
+    @lazy
     def __str__(self):
         return str(self.data)
 
@@ -50,9 +52,6 @@ class JsonObject(object):
             else:
                 old[k] = v or old[k]
             return old
-
-    def merge(self, new):
-        self._merge(self.data, new)
 
 
 class Config(JsonObject):

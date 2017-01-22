@@ -13,6 +13,8 @@ To run using Docker:
 To run on the host machine (need python 3.x):
 ---
 
+Copy `config.json.example` to `config.json` file and fill with the API tokens.
+
     pip3 install -r requirements.txt
     python3 bot.py
 

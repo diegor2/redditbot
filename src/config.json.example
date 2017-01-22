@@ -1,0 +1,13 @@
+{
+    "clients": {
+        "reddit": {
+            "client_id": "reddit client id",
+            "client_secret": "reddit secret",
+            "password": "reddit password",
+            "username": "reddit username"
+        },
+        "telegram": {
+            "token": "telegram token"
+        }
+    }
+}

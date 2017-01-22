@@ -14,4 +14,5 @@ class RedditBot(object):
         return bool(list(self.reddit.subreddits.search(subreddit)))
 
     def submit(self, subreddit, title, url):
-        print('\n'.join([subreddit, title, url]))
+        sub = self.reddit.subreddit(subreddit)
+        sub.submit(title, url=url, send_replies=False)

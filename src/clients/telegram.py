@@ -72,14 +72,18 @@ class TelegramBot(object):
 
     def _url(self, bot, update):
         url = update.message.text
-        title, description, image = web_preview(url)
-        subreddit = self.chats[update.message.chat.id]
-        self.reddit.submit(subreddit, title, url)
+        try:
+            title, description, image = web_preview(url)
+            subreddit = self.chats[update.message.chat.id]
+            self.reddit.submit(subreddit, title, url)
+        except Exception as e:
+            update.message.reply_text(str(e))
 
     def _stop(self, bot, update):
         m = update.message
         m.reply_text('This bot will no longer post links to reddit.')
         del self.chats[m.chat.id]
+        self.chats.save()
 
     def _status(self, bot, update):
         m = update.message
