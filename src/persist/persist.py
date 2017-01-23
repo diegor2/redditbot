@@ -21,7 +21,6 @@ class JsonObject(object):
         with open(self.file, 'w') as f:
             f.write(json.dumps(self.data, sort_keys=True, indent=4))
 
-    @lazy
     def merge(self, new):
         self._merge(self.data, new)
 

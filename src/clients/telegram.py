@@ -77,8 +77,9 @@ class TelegramBot(object):
             subreddit = self.chats[update.message.chat.id]
             self.reddit.submit(subreddit, title, url)
         except Exception as e:
-            update.message.reply_text(str(e))
-
+            # update.message.reply_text(str(e))
+            pass
+            
     def _stop(self, bot, update):
         m = update.message
         m.reply_text('This bot will no longer post links to reddit.')
