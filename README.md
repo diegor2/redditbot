@@ -1,7 +1,6 @@
 To run using Docker:
 ---
 
-    docker build -t redditbot .
     docker run --rm -it \
       -v "$PWD/chats.json:/var/local/redditbot/chats.json" \
       -v "$PWD/config.json:/var/local/redditbot/config.json" \
@@ -10,9 +9,17 @@ To run using Docker:
       -e "TELEGRAM_REDDIT_SECRET=Reddit app secret" \
       -e "TELEGRAM_REDDIT_USERNAME=Reddit bot username" \
       -e "TELEGRAM_REDDIT_PASSWORD=Reddit bot password" \
-      redditbot
+      diegor2/redditbot
 
-Mapping volumes is optional. Use if you need to persist configuration.
+    Mapping volumes is optional. Use if you need to persist configuration.
+
+To build
+---
+
+    docker build -t diegor2/redditbot .
+
+Building is also optional. If you execute just the `docker run` command above,
+it will use the [image from the docker hub](https://hub.docker.com/r/diegor2/redditbot/).
 
 To run without a container (need python 3.x):
 ---
