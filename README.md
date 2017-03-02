@@ -3,6 +3,8 @@ To run using Docker:
 
     docker build -t redditbot .
     docker run --rm -it \
+      -v "$PWD/chats.json:/var/local/redditbot/chats.json" \
+      -v "$PWD/config.json:/var/local/redditbot/config.json" \
       -e "TELEGRAM_REDDIT_TOKEN=Telegram bot token" \
       -e "TELEGRAM_REDDIT_ID=Reddit app id" \
       -e "TELEGRAM_REDDIT_SECRET=Reddit app secret" \
@@ -10,7 +12,9 @@ To run using Docker:
       -e "TELEGRAM_REDDIT_PASSWORD=Reddit bot password" \
       redditbot
 
-To run on the host machine (need python 3.x):
+Mapping volumes is optional. Use if you need to persist configuration.
+
+To run without a container (need python 3.x):
 ---
 
 Copy `config.json.example` to `config.json` file and fill with the API tokens.

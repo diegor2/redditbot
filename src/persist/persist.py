@@ -14,7 +14,7 @@ class JsonObject(object):
     def load(self):
         if os.path.exists(self.file):
             with open(self.file, 'r') as f:
-                self.data = json.load(f)
+                self.data = json.load(f) if len(f.read()) else {}
         # TODO: handle versions
 
     def save(self):
